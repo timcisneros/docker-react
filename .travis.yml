@@ -1,0 +1,15 @@
+sudo: required
+
+language: node_js
+
+node_js:
+    - '16'
+
+services:
+    - docker
+
+before_install:
+    - docker build -t tcisneros/docker-react -f Dockerfile.dev .
+
+script:
+    - docker run -e CI=true tcisneros/docker-react npm run test
